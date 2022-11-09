@@ -9,7 +9,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-2">Select Mode</label>
                                         <div class="col-md-2">
-                                            <input type="hidden" name="ahkweb_payment" value="ahkwebsolutions" >
+                                            <input type="hidden" name="sub" value="mastcoder" >
                                             <input type="hidden" class="form-control" name="email" value="<?php echo $suserdata['email'] ?>">
                                             <input type="hidden" class="form-control" name="name" value="<?php echo $suserdata['name'] ?>">
                                             <input type="hidden" class="form-control" name="phone" value="<?php echo $suserdata['mobile'] ?>">
@@ -30,11 +30,11 @@ include('../includes/session.php');
 include('../includes/config.php');
 include('templates/'.$admin_template.'/wallet.php');
 
-if(isset($_POST['ahkweb_payment']) && $_POST['ahkweb_payment'] == "ahkwebsolutions"){
-    $ORDER_ID =  "AHK" . rand(000000000,999999999);
-    $amount = mysqli_real_escape_string($ahk_conn,$_POST['amount']);
+if(isset($_POST['sub']) && $_POST['sub'] == "mastcoder"){
+    $ORDER_ID =  "MC" . rand(000000000,999999999);
+    $amount = mysqli_real_escape_string($conn,$_POST['amount']);
     $date = date("d-m-Y");
-    $ins = mysqli_query($ahk_conn,"INSERT INTO `payments`(`username`, `order_id`, `amount`,`status`,`txn_date`) VALUES ('$susername','$ORDER_ID','$amount','pending','$date')");
+    $ins = mysqli_query($conn,"INSERT INTO `payments`(`username`, `order_id`, `amount`,`status`,`txn_date`) VALUES ('$susername','$ORDER_ID','$amount','pending','$date')");
 
     if($ins){
                                 $name = $_POST['name'];
