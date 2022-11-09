@@ -2,7 +2,7 @@
 include('../includes/config.php');
 if(isset($_GET['client_txn_id'] )!=null && $_GET['txn_id']){
     $client_txn_id = $_GET['client_txn_id'];
-    $res = mysqli_query($ahk_conn,"SELECT * FROM payments WHERE order_id='$client_txn_id'");
+    $res = mysqli_query($conn,"SELECT * FROM payments WHERE order_id='$client_txn_id'");
     $dbdata = mysqli_fetch_assoc($res);
     $dbtxn_id = $dbdata['order_id'];
     
@@ -50,7 +50,7 @@ if(isset($_GET['client_txn_id'] )!=null && $_GET['txn_id']){
                 		$q = mysqli_query($ahk_conn,$sql);
                 		$addbal = $response["data"]['amount'];
                 		$nbalance = $udata['balance'] + $addbal;
-                		$updatewallet = mysqli_query($ahk_conn,"UPDATE `users` SET `balance`='$nbalance' WHERE `username`='$puser'");
+                		$updatewallet = mysqli_query($conn,"UPDATE `users` SET `balance`='$nbalance' WHERE `username`='$puser'");
                 		if($updatewallet){
                 		    ?>
                 		    <form method="post" action="Wallet.php" name="f1">
